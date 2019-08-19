@@ -10,7 +10,7 @@
   
   https://www.psychopy.org/download.html
   
-  Psychopy doesn't works with pyglet 1.4. Check if you have an older version installed, 
+  Psychopy doesn't work with pyglet 1.4 currently. Check that you have an older version installed, 
   otherwise uninstall your current version of pyglet and specify an older one.
   For example, installing via pip:
   
