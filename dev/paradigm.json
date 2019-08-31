@@ -1,0 +1,23 @@
+{
+	"trial": 
+	[
+		{
+			"type": "fixation",
+			"symbol": "+",
+			"duration": 0.2
+		},
+		{
+			"type": "random_blank",
+			"duration": [0.5, 0.7]
+		},
+		{
+			"type": "text",
+			"duration": 0.3 
+		},
+		{
+			"type": "choice",
+			"options": ["palabra", "no palabra"],
+			"duration": 3.7
+		}
+	]
+}
