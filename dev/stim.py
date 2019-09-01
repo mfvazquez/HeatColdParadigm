@@ -14,20 +14,33 @@ class Stimulus:
         self.win = win
         self.duration = duration
         self._update = False
+        self._watch_exit = False
 
     def run(self):
         self.win.flip()
-        core.wait(self.duration)
+
+        if not self._watch_exit:
+            core.wait(self.duration)
+        else:
+            keys = event.waitKeys(maxWait=self.duration, keyList=self.exit_key)
+            if keys and self.exit_key in keys:
+                return False
+
+        return True
 
     def needs_update(self):
         return self._update
+
+    def set_exit_key(self, exit_key):
+        self.exit_key = exit_key
+        self._watch_exit = True
 
 
 class SimpleDrawableStimulus(Stimulus):
 
     def run(self):
         self.stim.draw()
-        super().run()
+        return super().run()
 
 
 class Word(SimpleDrawableStimulus):
@@ -37,8 +50,8 @@ class Word(SimpleDrawableStimulus):
         self._update = True
 
     def run(self):
-        super().run()
         self._update = True
+        return super().run()
 
     def update(self, word):
         self.stim = visual.TextStim(self.win, text=word)
@@ -80,7 +93,17 @@ class Choice(Stimulus):
         for choice in self.choices:
             choice.draw()
         self.win.flip()
-        event.waitKeys(maxWait = self.duration, keyList = self.keys)
+
+        if not self._watch_exit:
+            keys = self.keys
+        else:
+            keys = self.keys + [self.exit_key]
+
+        keys_pressed = event.waitKeys(maxWait=self.duration, keyList=keys)
+        if keys_pressed and self.exit_key in keys_pressed:
+            return False
+
+        return True
 
 
 # -------------------------------------

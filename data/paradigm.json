@@ -5,6 +5,8 @@
 		"size": [800, 600]
 	},
 
+	"exit_key": "escape",
+
 	"sequence":[
 		{
 			"csv_file": "block1",

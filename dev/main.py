@@ -3,11 +3,12 @@
 from psychopy import core, visual, monitors
 import json
 import stim
+import sys
 
 
 if __name__ == "__main__":
 
-    with open("paradigm.json") as paradigm_config:
+    with open("../data/paradigm.json") as paradigm_config:
         config = json.load(paradigm_config)
 
     if "window" in config:
@@ -20,13 +21,25 @@ if __name__ == "__main__":
 
     stimuli = []
     for stimulus_conf in config["trial"]:
-        stimuli.append(stim.Constructor.create(stimulus_conf, win))
+        stimulus = stim.Constructor.create(stimulus_conf, win)
+        if "exit_key" in config:
+            stimulus.set_exit_key(config["exit_key"])
+        stimuli.append(stimulus)
 
+    print("{0} stimulus created successfully".format(len(stimuli)))
+    print("Loading words sequence...")
 
     for stimulus in stimuli:
+
         if stimulus.needs_update():
             stimulus.update("some word")
-        stimulus.run()
+
+        if not stimulus.run():
+            print("Exit key pressed. Leaving application...")
+            win.close()
+            core.quit()
+            sys.exit()
+
 
     win.close()
     core.quit()
