@@ -69,15 +69,18 @@ class Choice(Stimulus):
 
     def __init__(self, win, duration, choices):
         self.choices = []
+        self.keys = []
         for choice in choices:
             self.choices.append(visual.TextStim(
                 win, text=choice[0], pos=choice[1]))
+            self.keys.append(choice[2])
         super().__init__(win, duration)
 
     def run(self):
         for choice in self.choices:
             choice.draw()
-        super().run()
+        self.win.flip()
+        event.waitKeys(maxWait = self.duration, keyList = self.keys)
 
 
 # -------------------------------------
@@ -87,7 +90,7 @@ class Choice(Stimulus):
 
 class Constructor():
 
-    constructors = {
+    stimuli = {
         "fixation": Fixation,
         "blank": Blank,
         "random_blank": RandomBlank,
@@ -97,4 +100,4 @@ class Constructor():
 
     @classmethod
     def create(cls, config, win):
-        return cls.constructors[config["type"]](win, **config["setup"])
+        return cls.stimuli[config["type"]](win, **config["setup"])

@@ -1,9 +1,30 @@
 {	
 	"window":{
 		"color": "black",
-		"fullscr": true,
-		"size": [1920, 1080]
+		"fullscr": false,
+		"size": [800, 600]
 	},
+
+	"sequence":[
+		{
+			"csv_file": "block1",
+			"trial_type": "trial"
+		},
+		{
+			"csv_file": "block2",
+			"trial_type": "trial"
+		},
+		{
+			"csv_file": "block3",
+			"trial_type": "trial"
+		},
+		{
+			"csv_file": "block4",
+			"trial_type": "trial"
+		}	
+
+	],
+
 	"trial": 
 	[
 		{
@@ -13,24 +34,27 @@
 				"duration": 0.2
 			}
 		},
+
 		{
 			"type": "random_blank",
 			"setup": {
 				"range_duration": [0.5, 0.7]
 			}
 		},
+
 		{
 			"type": "word",
 			"setup": {
 				"duration": 0.3
 			}
 		},
+
 		{
 			"type": "choice",
 			"setup": {
 				"choices": [
-					["palabra", [-5, -3]], 
-					["no palabra", [5, -3]]
+					["palabra", [-5, -3], "left"], 
+					["no palabra", [5, -3], "right"]
 				],
 				"duration": 3.7
 			}
