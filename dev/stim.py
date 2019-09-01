@@ -10,7 +10,7 @@ import json
 
 
 class Stimulus:
-    def __init__(self, duration, win):
+    def __init__(self, win, duration):
         self.win = win
         self.duration = duration
         self._update = False
@@ -32,8 +32,8 @@ class SimpleDrawableStimulus(Stimulus):
 
 class Word(SimpleDrawableStimulus):
 
-    def __init__(self, duration, win):
-        super().__init__(duration, win)
+    def __init__(self, win, duration):
+        super().__init__(win, duration)
         self._update = True
 
     def run(self):
@@ -47,31 +47,32 @@ class Word(SimpleDrawableStimulus):
 
 class Fixation(SimpleDrawableStimulus):
 
-    def __init__(self, symbol, duration, win):
+    def __init__(self, win, symbol, duration):
         self.stim = visual.TextStim(win, text=symbol)
-        super().__init__(duration, win)
+        super().__init__(win, duration)
 
 
 class Blank(Stimulus):
 
-    def __init__(self, duration, win):
-        super().__init__(duration, win)
+    def __init__(self, win, duration):
+        super().__init__(win, duration)
 
 
 class RandomBlank(Blank):
 
-    def __init__(self, range, win):
-        duration = random.uniform(range[0], range[1])
-        super().__init__(duration, win)
+    def __init__(self, win, range_duration):
+        duration = random.uniform(range_duration[0], range_duration[1])
+        super().__init__(win, duration)
 
 
 class Choice(Stimulus):
 
-    def __init__(self, duration, choices, win):
+    def __init__(self, win, duration, choices):
         self.choices = []
         for choice in choices:
-            self.choices.append(visual.TextStim(win, text=choice[0], pos=choice[1]))
-        super().__init__(duration, win)
+            self.choices.append(visual.TextStim(
+                win, text=choice[0], pos=choice[1]))
+        super().__init__(win, duration)
 
     def run(self):
         for choice in self.choices:
@@ -79,56 +80,21 @@ class Choice(Stimulus):
         super().run()
 
 
-
 # -------------------------------------
-#            Constructor Classes
+#            Constructor Class
 # -------------------------------------
-
-
-class WordConstructor():
-
-    @classmethod
-    def create(cls, config, win):
-        return Word(config["duration"], win)
-
-
-class FixationConstructor():
-
-    @classmethod
-    def create(cls, config, win):
-        return Fixation(config["symbol"], config["duration"], win)
-
-
-class BlankConstructor():
-
-    @classmethod
-    def create(cls, config, win):
-        return Blank(config["duration"], win)
-
-
-class RandomBlankConstructor():
-
-    @classmethod
-    def create(cls, config, win):
-        return RandomBlank(config["duration"], win)
-
-class ChoiceConstructor():
-
-    @classmethod
-    def create(cls, config, win):
-        return Choice(config["duration"], config["choices"], win)
 
 
 class Constructor():
 
     constructors = {
-        "fixation": FixationConstructor,
-        "blank": BlankConstructor,
-        "random_blank": RandomBlankConstructor,
-        "word": WordConstructor,
-        "choice": ChoiceConstructor
+        "fixation": Fixation,
+        "blank": Blank,
+        "random_blank": RandomBlank,
+        "word": Word,
+        "choice": Choice
     }
 
     @classmethod
     def create(cls, config, win):
-        return cls.constructors[config["type"]].create(config, win)
+        return cls.constructors[config["type"]](win, **config["setup"])

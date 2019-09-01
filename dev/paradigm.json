@@ -8,24 +8,32 @@
 	[
 		{
 			"type": "fixation",
-			"symbol": "+",
-			"duration": 0.2
+			"setup": {
+				"symbol": "+",
+				"duration": 0.2
+			}
 		},
 		{
 			"type": "random_blank",
-			"duration": [0.5, 0.7]
+			"setup": {
+				"range_duration": [0.5, 0.7]
+			}
 		},
 		{
 			"type": "word",
-			"duration": 0.3 
+			"setup": {
+				"duration": 0.3
+			}
 		},
 		{
 			"type": "choice",
-			"choices": [
-				["palabra", [-5, -3]], 
-				["no palabra", [5, -3]]
-			],
-			"duration": 3.7
+			"setup": {
+				"choices": [
+					["palabra", [-5, -3]], 
+					["no palabra", [5, -3]]
+				],
+				"duration": 3.7
+			}
 		}
 	]
 }
