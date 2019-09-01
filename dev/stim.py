@@ -70,7 +70,7 @@ class Choice(Stimulus):
     def __init__(self, duration, choices, win):
         self.choices = []
         for choice in choices:
-            self.choices.append(visual.TextStim(win, text=choice))
+            self.choices.append(visual.TextStim(win, text=choice[0], pos=choice[1]))
         super().__init__(duration, win)
 
     def run(self):

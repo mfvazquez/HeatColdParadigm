@@ -1,17 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from psychopy import core, visual
+from psychopy import core, visual, monitors
 import json
 import stim
 
 
 if __name__ == "__main__":
 
-    with open("example.json") as paradigm_config:
+    with open("paradigm.json") as paradigm_config:
         config = json.load(paradigm_config)
 
-    win = visual.Window([800, 600], monitor='testMonitor', units='deg')
-
+    if "window" in config:
+        print("Loading custom setup...")
+        setup = config["window"]
+        win = visual.Window(**setup, monitor='testMonitor', units='deg')
+    else:
+        print("Loading default setup...")
+        win = visual.Window(monitor='testMonitor', units='deg')
 
     stimuli = []
     for stimulus_conf in config["trial"]:

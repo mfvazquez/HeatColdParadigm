@@ -1,4 +1,9 @@
-{
+{	
+	"window":{
+		"color": "black",
+		"fullscr": true,
+		"size": [1920, 1080]
+	},
 	"trial": 
 	[
 		{
@@ -16,7 +21,10 @@
 		},
 		{
 			"type": "choice",
-			"choices": ["palabra", "no palabra"],
+			"choices": [
+				["palabra", [-5, -3]], 
+				["no palabra", [5, -3]]
+			],
 			"duration": 3.7
 		}
 	]
