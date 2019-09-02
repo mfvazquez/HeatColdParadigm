@@ -8,23 +8,12 @@
 	"exit_key": "escape",
 
 	"sequence":[
-		{
-			"csv_file": "block1",
-			"trial_type": "trial"
-		},
-		{
-			"csv_file": "block2",
-			"trial_type": "trial"
-		},
-		{
-			"csv_file": "block3",
-			"trial_type": "trial"
-		},
-		{
-			"csv_file": "block4",
-			"trial_type": "trial"
-		}	
-
+			"lista1.csv",
+			"lista2.csv",
+			"lista3.csv",
+			"lista1prima.csv",
+			"lista2prima.csv",
+			"lista3prima.csv"
 	],
 
 	"trial": 
