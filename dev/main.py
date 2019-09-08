@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from psychopy import core, visual, monitors
+from psychopy import core, visual, monitors, logging
 import json
 import stim
 import sys
 import csv
 import os.path
 
-
 def csv_read(file, delimiter):
-    with open(file) as csvfile:
+    with open(file, encoding="utf8") as csvfile:
         readCSV = csv.reader(csvfile, delimiter=delimiter)
         csv_list = list(readCSV)
     return csv_list
@@ -24,6 +23,11 @@ if __name__ == "__main__":
     paradigm_file = os.path.join(script_path, "../data/paradigm.json")
     with open(paradigm_file) as paradigm_config:
         config = json.load(paradigm_config)
+
+    # Prepares log file
+    # logging.console.setLevel(logging.WARNING)
+    log_file = os.path.join(script_path, "../log/data.log")
+    logging.LogFile(log_file, level=logging.INFO, filemode='w')
 
     # Opens the window
     if "window" in config:
@@ -54,7 +58,7 @@ if __name__ == "__main__":
     # Runs the paradigm
     block_number = 1
     for block in blocks:
-        print("running block {0}...".format(x))
+        logging.log(level=logging.INFO, msg="running block {0}.".format(block_number))
         for (word, word_code) in block:
 
             for stimulus in stimuli:
@@ -63,11 +67,14 @@ if __name__ == "__main__":
                     stimulus.update(word)
 
                 if not stimulus.run():
-                    print("Exit key pressed. Leaving application...")
+                    logging.log(level=logging.INFO, msg="Exit key pressed. Leaving application.")
+                    logging.flush()
                     win.close()
                     core.quit()
                     sys.exit()
         block_number += 1
+        logging.flush()
 
+    logging.log(level=logging.INFO, msg="Leaving application.")
     win.close()
     core.quit()

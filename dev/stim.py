@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from psychopy import core, visual, event
+from psychopy import core, visual, event, logging
 import random
 import json
 
@@ -18,7 +18,6 @@ class Stimulus:
 
     def run(self):
         self.win.flip()
-
         if not self._watch_exit:
             core.wait(self.duration)
         else:
@@ -38,6 +37,10 @@ class Stimulus:
 
 class SimpleDrawableStimulus(Stimulus):
 
+    def __init__(self, win, duration):
+        super().__init__(win, duration)
+        self.stim = visual.TextStim(self.win, autoLog=True)
+
     def run(self):
         self.stim.draw()
         return super().run()
@@ -50,25 +53,34 @@ class Word(SimpleDrawableStimulus):
         self._update = True
 
     def run(self):
+        self.win.logOnFlip(level=logging.DATA, msg='word')
         self._update = True
         return super().run()
 
     def update(self, word):
-        self.stim = visual.TextStim(self.win, text=word)
+        self.stim.setText(word)
         self._update = False
 
 
 class Fixation(SimpleDrawableStimulus):
 
     def __init__(self, win, symbol, duration):
-        self.stim = visual.TextStim(win, text=symbol)
         super().__init__(win, duration)
+        self.stim.setText(symbol)
+
+    def run(self):
+        self.win.logOnFlip(level=logging.DATA, msg='fixation')
+        return super().run()
 
 
 class Blank(Stimulus):
 
     def __init__(self, win, duration):
         super().__init__(win, duration)
+
+    def run(self):
+        self.win.logOnFlip(level=logging.DATA, msg='blank')
+        return super().run()
 
 
 class RandomBlank(Blank):
@@ -90,6 +102,7 @@ class Choice(Stimulus):
         super().__init__(win, duration)
 
     def run(self):
+        self.win.logOnFlip(level=logging.DATA, msg='choice')
         for choice in self.choices:
             choice.draw()
         self.win.flip()
