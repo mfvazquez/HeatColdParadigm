@@ -8,12 +8,54 @@
 	"exit_key": "escape",
 
 	"sequence":[
-			"lista1.csv",
-			"lista2.csv",
-			"lista3.csv",
-			"lista1prima.csv",
-			"lista2prima.csv",
-			"lista3prima.csv"
+		{
+			"type": "instruction",
+			"file": "instruccion1.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista1.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion2.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista2.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion3.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista3.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion4.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista1prima.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion5.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista2prima.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion6.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista3prima.csv"
+		}
 	],
 
 	"trial": 
