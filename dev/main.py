@@ -5,7 +5,7 @@ import json
 import stim
 import sys
 import csv
-import os.path
+import os
 
 def csv_read(file, delimiter):
     with open(file, encoding="utf8") as csvfile:
@@ -30,7 +30,9 @@ if __name__ == "__main__":
         config = json.load(paradigm_config)
 
     # Prepares log file
-    # logging.console.setLevel(logging.WARNING)
+    log_dir = os.path.join(script_path, "../log")
+    if not os.path.exists(log_dir):
+        os.mkdir(log_dir)
     log_file = os.path.join(script_path, "../log/data.log")
     logging.LogFile(log_file, level=logging.INFO, filemode='w')
 
