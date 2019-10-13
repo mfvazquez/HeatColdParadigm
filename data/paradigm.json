@@ -1,0 +1,96 @@
+{	
+	"window":{
+		"color": "black",
+		"fullscr": false,
+		"size": [800, 600]
+	},
+
+	"exit_key": "escape",
+
+	"sequence":[
+		{
+			"type": "instruction",
+			"file": "instruccion1.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista1.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion2.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista2.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion3.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista3.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion4.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista1prima.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion5.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista2prima.csv"
+		},
+		{
+			"type": "instruction",
+			"file": "instruccion6.txt"
+		},
+		{
+			"type": "trial",
+			"file": "lista3prima.csv"
+		}
+	],
+
+	"trial": 
+	[
+		{
+			"type": "fixation",
+			"setup": {
+				"symbol": "+",
+				"duration": 0.2
+			}
+		},
+
+		{
+			"type": "random_blank",
+			"setup": {
+				"range_duration": [0.5, 0.7]
+			}
+		},
+
+		{
+			"type": "word",
+			"setup": {
+				"duration": 0.3
+			}
+		},
+
+		{
+			"type": "choice",
+			"setup": {
+				"choices": [
+					["palabra", [-5, -3], "left"], 
+					["no palabra", [5, -3], "right"]
+				],
+				"duration": 3.7
+			}
+		}
+	]
+}
