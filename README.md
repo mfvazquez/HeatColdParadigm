@@ -1,4 +1,4 @@
-<img align="right" src="img/lpen.jpeg">
+<img align="right" src="http://lpen.com.ar/wp-content/uploads/2016/06/logo1.png">
 
 # Heat Cold Paradigm
 
