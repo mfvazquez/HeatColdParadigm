@@ -30,10 +30,10 @@ class Stimulus:
     def needs_update(self):
         return self._update
 
+
     def set_exit_key(self, exit_key):
         self.exit_key = exit_key
         self._watch_exit = True
-
 
 class SimpleDrawableStimulus(Stimulus):
 
@@ -117,6 +117,25 @@ class Choice(Stimulus):
             return False
 
         return True
+
+
+
+class Instruction:
+
+    def __init__(self, win, text, exit_key):
+        self.win = win
+        self.exit_key = exit_key
+        self.instruction = visual.TextStim(win, text = text, autoLog=True, wrapWidth=100)
+
+    def run(self):
+        self.win.logOnFlip(level=logging.DATA, msg='instruction')        
+        self.instruction.draw()
+        self.win.flip()
+        keys_pressed = event.waitKeys()
+        if self.exit_key in keys_pressed:
+            return False
+        return True
+
 
 
 # -------------------------------------

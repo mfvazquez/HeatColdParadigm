@@ -1,8 +1,8 @@
 {	
 	"window":{
 		"color": "black",
-		"fullscr": false,
-		"size": [800, 600]
+		"fullscr": true,
+		"size": [1920, 1080]
 	},
 
 	"exit_key": "escape",
@@ -86,8 +86,8 @@
 			"type": "choice",
 			"setup": {
 				"choices": [
-					["palabra", [-5, -3], "left"], 
-					["no palabra", [5, -3], "right"]
+					["palabra", [-5, -3], "v"], 
+					["no palabra", [5, -3], "b"]
 				],
 				"duration": 3.7
 			}

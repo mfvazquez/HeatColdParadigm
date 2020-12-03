@@ -76,8 +76,12 @@ if __name__ == "__main__":
     block_number = 1
     for block in config["sequence"]:
         print(block["type"])
-        if block["type"] == "instruction":
-            continue
+        if block["type"] == "instruction" and not stim.Instruction(win, block["content"], config["exit_key"]).run():
+            logging.log(level=logging.INFO, msg="Exit key pressed. Leaving application.")
+            logging.flush()
+            win.close()
+            core.quit()
+            sys.exit()
 
         elif block["type"] == "trial":
 
