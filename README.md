@@ -1,10 +1,10 @@
-<img align="right" src="img/lpen.jpeg">
+<img align="right" src="http://lpen.com.ar/wp-content/uploads/2016/06/logo1.png">
 
 # Heat Cold Paradigm
 
 ### Prerequisites
 
-* Psychopy:
+* Psychopy 3:
 
   Follow the Psychopy instalation guide for your system:
   
@@ -17,10 +17,20 @@
   ```
   pip install pyglet==1.3.0b1
   ```
-  
+
+### Running
+
+Run the file `target/main.py` in your Psychopy 3 environment.
+
+On Linux you can execute the following command in the project's root directory:
+
+```
+python3 target/main.py
+```
+
 ## Authors
 
-Matías Vázquez
+Matías Fernando Vázquez
 
 ## License
 

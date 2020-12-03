@@ -2,10 +2,16 @@
 # -*- coding: utf-8 -*-
 from psychopy import core, visual, monitors, logging
 import json
-import stim
 import sys
 import csv
 import os
+
+# Path to this file
+script_path = os.path.abspath(os.path.dirname(__file__))
+# Adds dev dir to import custom modules
+sys.path.append(os.path.join(script_path, "../dev"))
+
+import stim
 
 def csv_read(file, delimiter):
     with open(file, encoding="utf8") as csvfile:
@@ -20,9 +26,6 @@ def txt_read(file):
 
 
 if __name__ == "__main__":
-
-    # Path to this file
-    script_path = os.path.abspath(os.path.dirname(__file__))
 
     # Loads paradigm configuration
     paradigm_file = os.path.join(script_path, "../data/paradigm.json")
